@@ -18,10 +18,11 @@ if [ ! -f $CACHE_FILE ]; then
   cd $BUILD_DIR
   # download image magick compiled binary (-O) silently (-s)
   echo "-----> Downloading ImageMagick from $DOWNLOAD_URL"
-  curl $DOWNLOAD_URL -s 0
+  wget $DOWNLOAD_URL -P $BUILD_DIR | indent
   
   # cache for future deploys
   echo "-----> Caching ImageMagick installation"
+  mkdir -p $VENDOR_DIR
   cd $VENDOR_DIR
   mv $BUILD_DIR/$IMAGEMAGICK_TARBALL $CACHE_FILE
   echo $CACHE_FILE
